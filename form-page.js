@@ -55,7 +55,7 @@ form.addEventListener("submit", (event) => {
   newCard.classList.add("card-list");
 
   //Append the card to the page, directly below the form
-  document.body.append(newCard);
+  form.append(newCard);
 });
 
 //Old stuff with A LOT of new elements (didn't work)
