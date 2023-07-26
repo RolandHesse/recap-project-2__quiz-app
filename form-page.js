@@ -1,5 +1,6 @@
 //getting element(s) from html
 const form = document.querySelector('[data-js="form"]');
+const main = document.querySelector('[data-js="main"]');
 
 //create event listener
 form.addEventListener("submit", (event) => {
@@ -55,7 +56,7 @@ form.addEventListener("submit", (event) => {
   newCard.classList.add("card-list");
 
   //Append the card to the page, directly below the form
-  document.body.append(newCard);
+  main.append(newCard);
 });
 
 //Old stuff with A LOT of new elements (didn't work)
