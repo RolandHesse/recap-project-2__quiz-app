@@ -13,7 +13,7 @@ form {
   flex-direction: column;
 }
 
-button {
+.submit-button {
   background: var(--secondary);
   color: var(--white);
   border: none;

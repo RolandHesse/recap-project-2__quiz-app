@@ -26,7 +26,7 @@ form.addEventListener("submit", (event) => {
             >
               Show answer
             </button>
-            <p class="card__answer" data-js="answer">${data.newAnswer}</p>
+            <p class="card__answer card__answer--active" data-js="answer">${data.newAnswer}</p>
             <ul class="card__tag-list">
               <li class="card__tag-list-item">#${data.tagField}</li>
             </ul>
