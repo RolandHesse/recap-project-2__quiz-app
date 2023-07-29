@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz-App__Form-Page</title>
     <link rel="stylesheet" href="./styles.css" />
-    <script src="./index.js" defer></script>
+    <script src="./form-page.js" defer></script>
   </head>
 
   <body>
@@ -17,20 +17,20 @@
 
     <!-- Main Section -->
     <main>
-      <form>
+      <form data-js="form">
         <div class="formfield">
           <label for="new-question">Your Question:</label>
           <textarea
-            name="new-question"
+            name="newQuestion"
             id="new-question"
             cols="30"
             rows="10"
           ></textarea>
         </div>
         <div class="formfield">
-          <label for="new-answer">Your Question:</h3></label>
+          <label for="new-answer">Your Answer:</h3></label>
           <textarea
-            name="new-answer"
+            name="newAnswer"
             id="new-answer"
             cols="30"
             rows="10"
@@ -38,9 +38,9 @@
         </div>
         <div class="formfield">
           <label for="tag-field">Tag:</label>
-          <input type="text" name="tag-field" id="tag-field" />
+          <input type="text" name="tagField" id="tag-field" />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" class="submit-button">Submit</button>
       </form>
     </main>
 
