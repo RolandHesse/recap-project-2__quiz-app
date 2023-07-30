@@ -23,18 +23,24 @@
           <textarea
             name="newQuestion"
             id="new-question"
+            data-js="formfieldNewQuestion"
             cols="30"
             rows="10"
+            maxlength="150"
           ></textarea>
+          <p data-js="countParagraphQuestion">150 characters remaining.</p>
         </div>
         <div class="formfield">
-          <label for="new-answer">Your Answer:</h3></label>
+          <label for="new-answer">Your Answer:</label>
           <textarea
             name="newAnswer"
             id="new-answer"
+            data-js="formfieldNewAnswer"
             cols="30"
             rows="10"
+            maxlength="150"
           ></textarea>
+          <p data-js="countParagraphAnswer">150 characters remaining.</p>
         </div>
         <div class="formfield">
           <label for="tag-field">Tag:</label>
