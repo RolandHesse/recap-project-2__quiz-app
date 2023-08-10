@@ -1,7 +1,19 @@
 //getting element(s) from html
 const form = document.querySelector('[data-js="form"]');
+const formfieldNewQuestion = document.querySelector(
+  '[data-js="formfieldNewQuestion"]'
+);
+const formfieldNewAnswer = document.querySelector(
+  '[data-js="formfieldNewAnswer"]'
+);
+const countParagraphQuestion = document.querySelector(
+  '[data-js="countParagraphQuestion"]'
+);
+const countParagraphAnswer = document.querySelector(
+  '[data-js="countParagraphAnswer"]'
+);
 
-//create event listener
+//create event listener for getting data from form
 form.addEventListener("submit", (event) => {
   //prevent default behavior of event listener
   event.preventDefault();
@@ -56,6 +68,18 @@ form.addEventListener("submit", (event) => {
 
   //Append the card to the page, directly below the form
   form.append(newCard);
+});
+
+//create event listener for form field 1
+formfieldNewQuestion.addEventListener("input", () => {
+  const charactersRemainingQuestion = 150 - formfieldNewQuestion.value.length;
+  countParagraphQuestion.textContent = `${charactersRemainingQuestion} characters remaining.`;
+});
+
+//create event listener for form field 2
+formfieldNewAnswer.addEventListener("input", () => {
+  const charactersRemainingAnswer = 150 - formfieldNewAnswer.value.length;
+  countParagraphAnswer.textContent = `${charactersRemainingAnswer} characters remaining.`;
 });
 
 //Old stuff with A LOT of new elements (didn't work)
