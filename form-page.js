@@ -18,56 +18,92 @@ form.addEventListener("submit", (event) => {
   //prevent default behavior of event listener
   event.preventDefault();
 
+  // console.log("event: ", event);
+  // console.log("event.target: ", event.target);
+
   // Read all entered data from the input fields
   const formData = new FormData(event.target);
   const data = Object.fromEntries(formData);
 
-  // Generate new DOM element for a card with createElement()
-  const newCard = document.createElement("ul");
+  // console.log("data: ", data);
 
-  //Insert the form's data as text into the DOM elements
-  newCard.innerHTML = `<li class="card-list__item">
-          <article class="card">
-            <h2 class="card__question">
-              ${data.newQuestion}
-            </h2>
-            <button
-              class="card__button-answer"
-              data-js="answer-button"
-              type="button"
-            >
-              Show answer
-            </button>
-            <p class="card__answer card__answer--active" data-js="answer">${data.newAnswer}</p>
-            <ul class="card__tag-list">
-              <li class="card__tag-list-item">#${data.tagField}</li>
-            </ul>
-            <div class="card__button-bookmark">
-              <button
-                class="bookmark"
-                data-js="bookmark-button"
-                aria-label="bookmark"
-                type="button"
-              >
-                <svg
-                  class="bookmark__icon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewbox="0 0 24 24"
-                >
-                  <path
-                    d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"
-                  />
-                </svg>
-              </button>
-            </div>
-          </article>
-        </li>`;
+  // Generate new DOM elements for a new card with createElement()
+  const cardList = document.createElement("ul");
+  cardList.classList.add("card-list");
+  form.append(cardList);
 
-  //Add style to newly created card
-  newCard.classList.add("card-list");
+  const cardListItem = document.createElement("li");
+  cardListItem.classList.add("card-list__item");
+  cardList.append(cardListItem);
 
-  //Append the card to the page, directly below the form
-  form.append(newCard);
+  const newCard = document.createElement("article");
+  newCard.classList.add("card");
+  cardListItem.append(newCard);
+
+  const newQuestion = document.createElement("h2");
+  newQuestion.classList.add("card__question");
+  newQuestion.textContent = data.newAnswer;
+  //newQuestion.textContent = formfieldNewQuestion.value;
+  newCard.append(newQuestion);
+
+  const showAnswerButton = document.createElement("button");
+  showAnswerButton.classList.add("card__button-answer");
+  showAnswerButton.setAttribute("data-js", "answer-button");
+  showAnswerButton.type = "button";
+  showAnswerButton.textContent = "Show Answer";
+  newCard.append(showAnswerButton);
+
+  const newAnswer = document.createElement("p");
+  newAnswer.classList.add("card__answer--active");
+  newAnswer.setAttribute("data-js", "answer");
+  newAnswer.textContent = data.newAnswer;
+  //newAnswer.textContent = formfieldNewAnswer.value;
+  newCard.append(newAnswer);
+
+  const tagList = document.createElement("ul");
+  tagList.classList.add("card__tag-list");
+  newCard.append(tagList);
+
+  const tagListItem = document.createElement("li");
+  tagListItem.classList.add("card__tag-list-item");
+  tagListItem.textContent = data.tagField;
+  tagList.append(tagListItem);
+
+  const divButtonBookmark = document.createElement("div");
+  divButtonBookmark.classList.add("card__button-bookmark");
+  newCard.append(divButtonBookmark);
+
+  const buttonBookmark = document.createElement("button");
+  buttonBookmark.classList.add("bookmark");
+  buttonBookmark.setAttribute("data-js", "bookmark-button");
+  //buttonBookmark.setAttribute("aria-label", "bookmark");
+  buttonBookmark.ariaLabel = "bookmark";
+  buttonBookmark.type = "button";
+  //buttonBookmark.textContent = svgBookmarkIcon;
+  divButtonBookmark.append(buttonBookmark);
+
+  const svgBookmarkIcon = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "svg"
+  );
+  svgBookmarkIcon.classList.add("bookmark__icon");
+  svgBookmarkIcon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  svgBookmarkIcon.setAttribute("viewBox", "0 0 24 24");
+  //svgBookmarkIcon.innerHTML = '<path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/>';
+  buttonBookmark.append(svgBookmarkIcon);
+
+  const svgPath = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "path"
+  );
+  svgPath.setAttribute(
+    "d",
+    "M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"
+  );
+  svgBookmarkIcon.append(svgPath);
+
+  event.target.reset();
+  event.target.elements[0].focus();
 });
 
 //create event listener for form field 1
@@ -81,42 +117,3 @@ formfieldNewAnswer.addEventListener("input", () => {
   const charactersRemainingAnswer = 150 - formfieldNewAnswer.value.length;
   countParagraphAnswer.textContent = `${charactersRemainingAnswer} characters remaining.`;
 });
-
-//Old stuff with A LOT of new elements (didn't work)
-//  //Generate all DOM element for a card with createElement()
-//  const liElementCard = document.createElement("li");
-//  const articleElement = document.createElement("article");
-//  const h2Element = document.createElement("h2");
-//  const buttonElementShowAnswer = document.createElement("button");
-//  const pElementAnswer = document.createElement("p");
-//  const ulElementTags = document.createElement("ul");
-//  const liElementTags = document.createElement("li");
-//  const divElementBookmarkButton = document.createElement("div");
-//  const buttonElementBookmarkButton = document.createElement("button");
-//  const svgElementBookmarkIcon = document.createElement("svg");
-//  const svgElementSvgPath = document.createElement("path");
-
-//  //Add styles to newly created elements
-//  liElementCard.classList.add("card-list__item");
-//  articleElement.classList.add("card");
-//  h2Element.classList.add("card-question");
-//  buttonElementShowAnswer.classList.add("card__button-answer");
-//  pElementAnswer.classList.add("card__answer");
-//  ulElementTags.classList.add("card__tag-list");
-//  liElementTags.classList.add("card__tag-list-item");
-//  divElementBookmarkButton.classList.add("card__button-bookmark");
-//  buttonElementBookmarkButton.classList.add("bookmark");
-//  svgElementBookmarkIcon.classList.add("bookmark__icon");
-
-//  //Insert the form's data as text into the DOM elements
-//  h2Element.textContent = `${data.newQuestion}`;
-//  pElementAnswer.textContent = `${data.newAnswer}`;
-//  liElementTags.textContent = `#${tagField}`;
-
-//  //Group elements together
-//  liElementCard.append(articleElement);
-//  articleElement.append(h2Element, buttonElementShowAnswer, pElementAnswer, ulElementTags, divElementBookmarkButton);
-//  ulElementTags.append(liElementTags);
-//  divElementBookmarkButton.append(buttonElementBookmarkButton);
-//  buttonElementBookmarkButton.append(svgElementBookmarkIcon);
-//  svgElementBookmarkIcon.append(svgElementSvgPath);
